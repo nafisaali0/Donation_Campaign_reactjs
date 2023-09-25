@@ -1,15 +1,17 @@
 // import PropTypes from 'prop-types';
 
+import Banner from "../Banner/Banner";
+
 const Home = () => {
     return (
         <div>
-            <h2>Home</h2>
+            <Banner></Banner>
         </div>
     );
 };
 
-Home.propTypes = {
+// Home.propTypes = {
 
-};
+// };
 
 export default Home;
