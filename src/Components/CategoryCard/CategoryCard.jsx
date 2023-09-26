@@ -10,7 +10,7 @@ const CategoryCard = () => {
             .then(res => res.json())
             .then(data => setCards(data))
     }, [])
-    console.log(cards)
+    // console.log(cards)
     return (
         <div>
             <h2>Category:{cards.length} </h2>
