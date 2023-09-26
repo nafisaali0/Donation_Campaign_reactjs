@@ -12,7 +12,7 @@ const CardDetails = () => {
   
     let buttonClicked = false;
     const convertInt = parseInt(id)
-    // console.log(convertInt)
+    //console.log(convertInt)
     const handleAddDonation = () => {
         if (!buttonClicked) {
             saveDonationsCard(convertInt)

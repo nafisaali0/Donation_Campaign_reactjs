@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
-import Card from "../card/card";
+import Card from "../Card/Card";
 
 const CategoryCard = () => {
     const [cards, setCards] = useState([]);
