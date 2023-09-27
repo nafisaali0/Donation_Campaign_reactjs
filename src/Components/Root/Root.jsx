@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { Outlet } from "react-router-dom";
 import Header from './../Header/Header';
 
@@ -13,8 +12,6 @@ const Root = () => {
     );
 };
 
-// Root.propTypes = {
 
-// };
 
 export default Root;

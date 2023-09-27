@@ -1,8 +1,8 @@
-// import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 
 const CategoryCard = () => {
+
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ const CategoryCard = () => {
             .then(res => res.json())
             .then(data => setCards(data))
     }, [])
-    // console.log(cards)
+
     return (
         <div>
             <h2>Category:{cards.length} </h2>
@@ -23,8 +23,6 @@ const CategoryCard = () => {
     );
 };
 
-// CategoryCard.propTypes = {
 
-// };
 
 export default CategoryCard;

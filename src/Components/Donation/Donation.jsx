@@ -1,31 +1,30 @@
-// import PropTypes from 'prop-types';
-
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getStoredDonationCard } from "../../Utility/localStorage";
-// import Banner from "../Banner/Banner";
 
 const Donation = () => {
+
     const cards = useLoaderData();
     const [donatedCard, setDonatedCard] = useState([])
     const [dataLength, setDataLength] = useState(4);
+
     useEffect(() => {
+
         const storelocalStorageCard = getStoredDonationCard();
         const donateCardId = []
 
         if (cards.length > 0) {
+
             for (const id of storelocalStorageCard) {
                 const card = cards.find(cardId => cardId.id === id)
-                // console.log(card)
+
                 if (card) {
                     donateCardId.push(card)
                 }
             }
         } setDonatedCard(donateCardId)
     }, [])
-    // console.log(donatedCard)
 
-    // const { price, title,  details_image, category_name, card_image, category_text, title_color, category_bg } = donatedCard;
     return (
         <>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-10 mb-10">
@@ -57,12 +56,7 @@ const Donation = () => {
             </div>
 
         </>
-
     );
 };
-
-// Donation.propTypes = {
-
-// };
 
 export default Donation;

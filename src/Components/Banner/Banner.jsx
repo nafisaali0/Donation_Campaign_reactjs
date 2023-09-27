@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 // import banner from  './banner.jpg'
 
 const Banner = () => {
@@ -19,8 +18,6 @@ const Banner = () => {
     );
 };
 
-// Banner.propTypes = {
 
-// };
 
 export default Banner;

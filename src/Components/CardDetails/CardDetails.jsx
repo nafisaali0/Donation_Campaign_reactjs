@@ -1,24 +1,26 @@
-import {useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { saveDonationsCard } from "../../Utility/localStorage";
 
-// import PropTypes from 'prop-types';
+
 const CardDetails = () => {
+
     const cards = useLoaderData();
     const { id } = useParams();
+    
     const card = cards.find(card => card.id == id)
     const { price, title, description, details_image, title_color } = card
-  
+
     let buttonClicked = false;
     const convertInt = parseInt(id)
-    //console.log(convertInt)
+  
     const handleAddDonation = () => {
         if (!buttonClicked) {
             saveDonationsCard(convertInt)
             toast.success("Donate Successfully")
             buttonClicked = true;
-        }else{
+        } else {
             toast.error("You already donated")
         }
     }
@@ -40,8 +42,5 @@ const CardDetails = () => {
     );
 };
 
-// CardDetails.propTypes = {
-
-// };
 
 export default CardDetails;
