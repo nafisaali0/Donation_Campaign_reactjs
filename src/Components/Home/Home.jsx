@@ -1,10 +1,10 @@
-import Banner from "../Banner/Banner";
+// import Banner from "../Banner/Banner";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
             <CategoryCard></CategoryCard>
         </div>
     );
