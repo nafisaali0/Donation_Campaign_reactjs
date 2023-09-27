@@ -1,51 +1,48 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart } from "react-google-charts";
 import { useEffect, useState } from 'react';
-import { Pie } from 'react-chartjs-2';
 import { useLoaderData } from 'react-router-dom';
 import { getStoredDonationCard } from '../../Utility/localStorage';
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Statistics = () => {
 
-    const totalCards = useLoaderData();
+    const totalCards = useLoaderData();//load json data
     const [loadCard, setLoadCard] = useState([]);
-
+    
+    //call load localStorage card
     useEffect(() => {
         const getLoadCard = getStoredDonationCard([]);
-        setLoadCard(getLoadCard)
+        setLoadCard(getLoadCard)//set it to state
     }, [])
 
-    const donatedPercentage = (loadCard.length / totalCards.length) * 100;
-    console.log(donatedPercentage)
+    const donatedPercentage = (loadCard.length / totalCards.length) * 100;//calculate percentage for donated card
 
-    const totalCard = 100 - donatedPercentage;
-    console.log(totalCard)
-
+    const totalCardPt = 100 - donatedPercentage;//calculate percentage for total card after donate
     
-    const data = {
-        
-        datasets: [
-            {
-                data: [donatedPercentage, totalCard],
-                backgroundColor: [
-                    '#00C49F',
-                    '#FF444A',
-                ],
-                label: '# of Votes',
-                borderWidth: 1,
-            },
-        ],
-        labels: ['Your Donation', 'Total Donation'],
-    };
+    // pass percntage value for chart
+    const data = [
+        ["Task", "Percentage"],
+        ["Your Donation", donatedPercentage],
+        ["Total Donation", totalCardPt],
+    ];
+
+    const chartColors = ["#00C49F","#FF444A"]
     const options = {
-        responsiv: true,
-        maintainAspectRatio: false,
-    }
+        title: "Donation Statistics",
+        is3D: true,
+        colors: chartColors,
+    };
     return (
-        <div>
-            <Pie height={450} width={450} data={data} options={options} />
+        <div className='container mx-auto mt-52'>
+            <Chart
+                chartType="PieChart"
+                data={data}
+                options={options}
+                width={"100%"}
+                height={"400px"}
+            />
         </div>
     );
 };
+
 
 export default Statistics;

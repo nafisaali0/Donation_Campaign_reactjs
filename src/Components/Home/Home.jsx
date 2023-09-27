@@ -1,12 +1,13 @@
-// import Banner from "../Banner/Banner";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
 const Home = () => {
     return (
-        <div>
-            {/* <Banner></Banner> */}
-            <CategoryCard></CategoryCard>
-        </div>
+        <>
+            <div>
+                <CategoryCard></CategoryCard>
+            </div>
+        </>
+
     );
 };
 

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 
 const Card = ({ card }) => {
-
+    
     const { id, category_name, title, card_image, category_text, title_color, category_bg } = card
 
     return (
         <>
-            <Link to={`/card/${id}`}>
+            <Link to={`/carddetails/${id}`}>
                 <div className="card bg-base-100 shadow-xl" style={{ background: category_bg }} >
                     <figure><img className='w-full' src={card_image} alt="Shoes" /></figure>
                     <div className="card-body">

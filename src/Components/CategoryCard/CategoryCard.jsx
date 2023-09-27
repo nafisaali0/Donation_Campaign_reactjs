@@ -3,10 +3,11 @@ import Card from "../Card/Card";
 import Banner from "../Banner/Banner";
 
 const CategoryCard = () => {
-
-    const [cards, setCards] = useState([]);
-    const [filterCards, setFilterCards] = useState([])
-
+    
+    const [cards, setCards] = useState([]); //store all cards
+    const [filterCards, setFilterCards] = useState([]) //store all cards for filter
+    
+    // call json file
     useEffect(() => {
         fetch('cards.json')
             .then(res => res.json())
@@ -15,23 +16,9 @@ const CategoryCard = () => {
                 setFilterCards(data);
             })
     }, [])
-
+    
+    // add condion in handleSearch for filter 
     const handleSearch = (e) => {
-        // if (e === 'all') {
-        //     setFilterCards(cards)
-        // } else if (e === 'health') {
-        //     const health = cards.filter(card => card.category_name === 'Health');
-        //     setFilterCards(health)
-        // } else if (e === 'education') {
-        //     const education = cards.filter(card => card.category_name === 'Education');
-        //     setFilterCards(education)
-        // } else if (e === 'cloth') {
-        //     const cloth = cards.filter(card => card.category_name === 'Clothing');
-        //     setFilterCards(cloth)
-        // } else if (e === 'food') {
-        //     const food = cards.filter(card => card.category_name === 'Food');
-        //     setFilterCards(food)
-        // }
         if (e === 'all') {
             setFilterCards(cards)
         } else if (e === 'health' || e === 'Health') {
@@ -51,10 +38,9 @@ const CategoryCard = () => {
    
     return (
         <>
-             <Banner onSearch={handleSearch} />
-            <div>
-                {/* <h2>Category:{cards.length} </h2> */}
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 p-5 mb-5">
+            <Banner handleSearch={handleSearch} /> 
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 p-5 mb-5 mt-10">
                     {
                         filterCards.map(card => <Card key={card.id} card={card}></Card>)
                     }

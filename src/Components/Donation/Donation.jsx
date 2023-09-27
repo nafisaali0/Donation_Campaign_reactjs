@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { getStoredDonationCard } from "../../Utility/localStorage";
 
 const Donation = () => {
 
-    const cards = useLoaderData();
-    const [donatedCard, setDonatedCard] = useState([])
-    const [dataLength, setDataLength] = useState(4);
+    const cards = useLoaderData(); //load json file
+    const [donatedCard, setDonatedCard] = useState([]) //create state for store donated card and access it all over
+    const [dataLength, setDataLength] = useState(4); // state for slice for (show all) button and for compare it with all data length
 
     useEffect(() => {
-
-        const storelocalStorageCard = getStoredDonationCard();
-        const donateCardId = []
+        
+        const storelocalStorageCard = getStoredDonationCard();//store localStorage data in variable
+        const donateCardId = [] //emty array to store only donated card from total cards
 
         if (cards.length > 0) {
 
@@ -22,11 +22,12 @@ const Donation = () => {
                     donateCardId.push(card)
                 }
             }
+
         } setDonatedCard(donateCardId)
     }, [])
 
     return (
-        <>
+        <div className="container mx-auto mt-24 p-3">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-10 mb-10">
                 {
                     donatedCard.slice(0, dataLength).map(donateCard =>
@@ -42,7 +43,9 @@ const Donation = () => {
                                 <button className="text-center font-semibold w-24 px-3 py-2 rounded-md mb-3" style={{ color: donateCard.category_text, background: donateCard.category_bg }}>{donateCard.category_name}</button>
                                 <p className='font-bold mb-3' style={{ color: donateCard.title_color }}>{donateCard.title}</p>
                                 <p className='font-bold mb-3' style={{ color: donateCard.title_color }}>{donateCard.price}$</p>
-                                <button className="text-center font-semibold w-36 px-5 py-2 text-white rounded-md" style={{ background: donateCard.title_color }}>View Details</button>
+                                <Link to={`/carddetails/${donateCard.id}`}>
+                                    <button className="text-center font-semibold w-36 px-5 py-2 text-white rounded-md" style={{ background: donateCard.title_color }}>View Details</button>
+                                </Link>
                             </div>
                         </div>
                     )
@@ -50,12 +53,12 @@ const Donation = () => {
                 }
 
             </div>
-
+             {/* condition for (show all) button */}
             <div className={`flex justify-center items-center my-10 ${dataLength == donatedCard.length ? 'hidden' : ""}`}>
                 <button onClick={() => setDataLength(donatedCard.length)} className="text-center font-semibold bg-[#009444] px-5 py-2 text-white rounded-md">See More</button>
             </div>
 
-        </>
+        </div>
     );
 };
 

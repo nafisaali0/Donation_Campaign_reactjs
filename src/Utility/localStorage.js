@@ -13,7 +13,7 @@ const saveDonationsCard = (id) => {
   if (!exits) {
     storeDonationCard.push(id);
     localStorage.setItem('donation_cards', JSON.stringify(storeDonationCard))
-    alert("Donate Successfully")   
+    // alert("Donate Successfully")   
   }
 };
 
