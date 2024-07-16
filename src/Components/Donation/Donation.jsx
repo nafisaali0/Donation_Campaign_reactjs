@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { getStoredDonationCard } from "../../Utility/localStorage";
+import { Helmet } from "react-helmet-async";
 
 const Donation = () => {
 
@@ -9,7 +10,7 @@ const Donation = () => {
     const [dataLength, setDataLength] = useState(4); // state for slice for (show all) button and for compare it with all data length
 
     useEffect(() => {
-        
+
         const storelocalStorageCard = getStoredDonationCard();//store localStorage data in variable
         const donateCardId = [] //emty array to store only donated card from total cards
 
@@ -25,9 +26,12 @@ const Donation = () => {
 
         } setDonatedCard(donateCardId)
     }, [])
-
+    console.log(donatedCard)
     return (
         <div className="container mx-auto mt-24 p-3">
+            <Helmet>
+                <title>Donation | Donation Campaign</title>
+            </Helmet>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-10 mb-10">
                 {
                     donatedCard.slice(0, dataLength).map(donateCard =>
@@ -53,10 +57,14 @@ const Donation = () => {
                 }
 
             </div>
-             {/* condition for (show all) button */}
-            <div className={`flex justify-center items-center my-10 ${dataLength == donatedCard.length ? 'hidden' : ""}`}>
-                <button onClick={() => setDataLength(donatedCard.length)} className="text-center font-semibold bg-[#009444] px-5 py-2 text-white rounded-md">See More</button>
+            {/* condition for (show all) button */}
+            {/* ${dataLength === donatedCard.length ? 'hidden' : " "}` */}
+            <div className={dataLength === donatedCard.length && 'hidden'}>
+                <div className="flex justify-center items-center my-10">
+                    <button onClick={() => setDataLength(donatedCard.length)} className="text-center font-semibold bg-[#009444] px-5 py-2 text-white rounded-md">See More</button>
+                </div>
             </div>
+
 
         </div>
     );

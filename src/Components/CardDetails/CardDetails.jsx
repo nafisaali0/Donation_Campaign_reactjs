@@ -2,22 +2,23 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { saveDonationsCard } from "../../Utility/localStorage";
+import { Helmet } from "react-helmet-async";
 
 
 const CardDetails = () => {
-        
+
     const cards = useLoaderData();// call json file
     const { id } = useParams(); //get id using react params
-    
+
     const card = cards.find(card => card.id == id) //find the click id from all cards id
     const { price, title, description, details_image, title_color } = card //break the object property
-    
+
     //set button default value false
     let buttonClicked = false;
 
     //remove string id for loadstorage
     const convertInt = parseInt(id)
-    
+
     // condition for donation button
     const handleAddDonation = () => {
         if (!buttonClicked) {
@@ -31,6 +32,9 @@ const CardDetails = () => {
 
     return (
         <div className="p-5 container mx-auto">
+            <Helmet>
+                <title>Card Details | Donation Campaign</title>
+            </Helmet>
             <div className="relative">
                 <figure><img className='w-full rounded-xl my-5 ' src={details_image} alt='card' /></figure>
                 <div className="absolute w-full bottom-0 h-16 md:h-24 p-5  bg-[#0B0B0B80] ">

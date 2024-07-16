@@ -17,7 +17,7 @@ const CategoryCard = () => {
             })
     }, [])
     
-    // add condion in handleSearch for filter 
+    // add condtion in handleSearch for filter 
     const handleSearch = (e) => {
         if (e === 'all') {
             setFilterCards(cards)
